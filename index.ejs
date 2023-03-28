@@ -19,9 +19,9 @@
             </div>
         <% } %>
     </section>
-    <form method="POST" action="/new">
+    <form method="POST" action="<%= route %>">
         <fieldset>
-            <label for="message">Felipe Rangel Ribeiro</label>
+            <label for="message"><%= username %></label>
             <input name="message" type="text">
         </fieldset>
         <button>send</button>
