@@ -42,10 +42,15 @@ button {
 }
 @media (max-width: 370px) {
     form {
-        display: initial;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+    }
+    form button{
+        margin-right: 10px;
     }
     fieldset label {
-        top: 45px;
-        left: 55px;
+        top: 46px;
+        left: 40px;
     }
 }

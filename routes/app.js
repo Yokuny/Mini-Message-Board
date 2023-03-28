@@ -1,18 +1,18 @@
 const express = require("express");
 const fs = require("fs/promises");
 const ejs = require("ejs");
-
+const bodyParser = require("body-parser");
 const app = express();
-const port = 3000;
-//middleware to serve static files
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//modificar e preencher esse array com resposta do panco de dados
+const user = "Felipe Rangel Ribeiro";
 const messages = [];
-messages.push({ user: "John Doe", message: "Hello, World!" });
-messages.push({ user: "Jane Debb", message: "Coe, cara!" });
+messages.push({ user: "Janete8749", message: "tuts tuts quero vê" });
+messages.push({ user: "Tripé de andaime", message: "Tudo em cima ?" });
 
 app.get("/", async (req, res) => {
+  console.count(">");
   try {
     const indexPage = await fs.readFile("index.ejs", "utf-8");
     res.set("Content-Type", "text/html");
@@ -21,7 +21,12 @@ app.get("/", async (req, res) => {
     console.error(err);
   }
 });
-//port listenner
-app.listen(port, () => {
-  console.log(`http://localhost:${port}/`);
+
+app.post("/new", (req, res) => {
+  messages.push({ user: user, message: req.body.message });
+  res.redirect("/");
+});
+
+app.listen(3000, () => {
+  console.log(`http://localhost:3000/`);
 });

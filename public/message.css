@@ -12,12 +12,14 @@ section {
     position: relative;
 }
 .text {
+    overflow: hidden;
     padding: 10px;
     height: auto;
 }
 @media (max-width: 430px) {
     section {
         padding: 15px;
+        padding-top: 40px;
         padding-bottom: calc(10px + 40px + 30px + 40px);
     }
 }
