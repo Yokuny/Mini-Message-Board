@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="/body.css">
     <link rel="stylesheet" href="/form.css">
     <link rel="stylesheet" href="/message.css">
-    <link rel="icon" href="message.svg" type="image/x-icon">
+    <link rel="icon" href="/message.svg" type="image/x-icon">
     <title>Message-Board</title>
 </head>
 <body>
     <section>
-        <div class="message">
-            <p class="user">name</p>
-            <p class="text">message template</p>
-        </div>
+        <% for (let i = 0; i < messages.length; i++) { %>
+            <div class="message">
+                <p class="user"><%= messages[i].user %></p>
+                <p class="text"><%= messages[i].message %></p>
+            </div>
+        <% } %>
     </section>
     <form action="">
         <fieldset>

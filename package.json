@@ -4,7 +4,7 @@
   "description": "Um aplicativo web interativo! Um quadro de mensagens super simples.",
   "main": "index.js",
   "scripts": {
-    "test": "node ./app.js"
+    "test": "node ./routes/app.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Yokuny/Mini-Message-Board#readme",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2"
   }
 }
