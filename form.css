@@ -1,0 +1,51 @@
+form {
+    position: fixed;
+    bottom: 40px;
+    display: flex;
+    width: min(370px, 90%);
+    justify-content: space-between;
+}
+fieldset {
+    position: relative;
+    width: 90%;
+}
+label, .user {
+    position: absolute;
+    top: -11px;
+    left: -5px;
+    height: 14px;
+    font-size: 11px;
+    background-color: #77c699;
+    padding: 0 10px;
+    line-height: 14px;
+    overflow: hidden;
+}
+input, button, .text {
+    height: 30px;
+    padding: 0 10px;
+    color: #609F7B;
+    background-color: #333335;
+    border-style: none;
+    transition: filter .3s;
+}
+input:hover, input:focus, input:active, button:hover, button:focus, button:active {
+    outline: 0;
+    filter: brightness(120%);
+}
+input {
+    width: calc(100% - 10px);
+}
+button {
+    background-color: #A56377;
+    color: #111314;
+    cursor: pointer;
+}
+@media (max-width: 370px) {
+    form {
+        display: initial;
+    }
+    fieldset label {
+        top: 45px;
+        left: 55px;
+    }
+}

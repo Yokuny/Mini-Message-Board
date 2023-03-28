@@ -1,0 +1,23 @@
+{
+  "name": "mini-message-board",
+  "version": "1.0.0",
+  "description": " Um aplicativo web interativo! Um quadro de mensagens super simples.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yokuny/Mini-Message-Board.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "yokuny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yokuny/Mini-Message-Board/issues"
+  },
+  "homepage": "https://github.com/Yokuny/Mini-Message-Board#readme"
+}
