@@ -10,6 +10,7 @@ const ejs = require("ejs");
 
 const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("./scratch");
+localStorage.clear();//vamos ver se permite o usuario digitar o nome
 let user = localStorage.getItem("user") || "";
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
