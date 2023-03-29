@@ -8,11 +8,6 @@ const fs = require("fs/promises");
 require("dotenv").config();
 const ejs = require("ejs");
 
-const { LocalStorage } = require("node-localstorage");
-const localStorage = new LocalStorage("./scratch");
-localStorage.clear();//vamos ver se permite o usuario digitar o nome
-let user = localStorage.getItem("user") || "";
-
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const client = new MongoClient(process.env.URI, {
   useNewUrlParser: true,
@@ -24,18 +19,19 @@ client.connect((err) => {
   console.log(collection);
 });
 
+let user = false;
 app.get("/", async (req, res) => {
   try {
     const collection = client.db("mini-message-board").collection("messages");
     const messages = await collection.find().toArray();
-    if (user.length === 0) {
-      username = "Digite seu nome:";
-      route = "username";
-      placeHolder = "Digite seu nome";
-    } else {
+    if (user) {
       username = user;
       route = "new";
       placeHolder = "Mensagem";
+    } else {
+      username = "Digite seu nome:";
+      route = "username";
+      placeHolder = "Digite seu nome";
     }
     const indexPage = await fs.readFile("index.ejs", "utf-8");
     res.set("Content-Type", "text/html");
@@ -44,8 +40,10 @@ app.get("/", async (req, res) => {
     console.error(err);
   }
 });
-
 app.post("/new", async (req, res) => {
+  if (req.body.message.length === 0) {
+    return res.redirect("/");
+  }
   try {
     const collection = client.db("mini-message-board").collection("messages");
     await collection.insertOne({ user: user, message: req.body.message });
@@ -55,12 +53,12 @@ app.post("/new", async (req, res) => {
     res.status(500).send("Error inserting message");
   }
 });
+
 app.post("/username", (req, res) => {
   if (req.body.message.length === 0) {
     return res.redirect("/");
   }
   user = req.body.message;
-  localStorage.setItem("user", user);
   res.redirect("/");
 });
 app.listen(3000, () => {
