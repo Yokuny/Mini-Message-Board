@@ -31,13 +31,15 @@ app.get("/", async (req, res) => {
     if (user.length === 0) {
       username = "Digite seu nome:";
       route = "username";
+      placeHolder = "Digite seu nome";
     } else {
       username = user;
       route = "new";
+      placeHolder = "Mensagem";
     }
     const indexPage = await fs.readFile("index.ejs", "utf-8");
     res.set("Content-Type", "text/html");
-    res.send(ejs.render(indexPage, { messages: messages, username, route }));
+    res.send(ejs.render(indexPage, { messages: messages, username, route, placeHolder }));
   } catch (err) {
     console.error(err);
   }
@@ -54,6 +56,9 @@ app.post("/new", async (req, res) => {
   }
 });
 app.post("/username", (req, res) => {
+  if (req.body.message.length === 0) {
+    return res.redirect("/");
+  }
   user = req.body.message;
   localStorage.setItem("user", user);
   res.redirect("/");
